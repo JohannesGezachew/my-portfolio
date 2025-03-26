@@ -5,9 +5,21 @@ document.addEventListener('DOMContentLoaded', () => {
     initCursor();
     initMenu();
     initLocalTime();
-    initThreeJS();
-    initScrollAnimations();
-    initProjectInteractions();
+    
+    // Only initialize Three.js if not on mobile
+    if (window.innerWidth > 768) {
+        initThreeJS();
+    } else {
+        // Add a simple background gradient for mobile
+        document.getElementById('webgl').style.background = 'linear-gradient(135deg, #111111 0%, #333333 100%)';
+    }
+    
+    // Delay scroll animations to improve initial load performance
+    setTimeout(() => {
+        initScrollAnimations();
+        initProjectInteractions();
+        initContactForm(); // Initialize contact form functionality
+    }, 100);
 });
 
 // Loader Animation
@@ -386,6 +398,144 @@ function initProjectInteractions() {
                     }
                 }
             }
+        });
+    });
+}
+
+// Contact Form Submission
+function initContactForm() {
+    const contactTrigger = document.getElementById('contact-trigger');
+    const cancelForm = document.getElementById('cancel-form');
+    const formContainer = document.querySelector('.contact-form-container');
+    const form = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
+    
+    if (!contactTrigger || !form) return;
+    
+    // Show form when clicking "Get in touch"
+    contactTrigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        formContainer.classList.remove('hidden');
+        
+        // Animate form appearing with GSAP if available
+        if (typeof gsap !== 'undefined') {
+            gsap.fromTo(formContainer, 
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }
+            );
+        }
+        
+        // Hide the contact trigger button
+        contactTrigger.parentElement.style.display = 'none';
+        
+        // Focus the first input
+        setTimeout(() => {
+            form.querySelector('input').focus();
+        }, 100);
+    });
+    
+    // Hide form when clicking "Cancel"
+    if (cancelForm) {
+        cancelForm.addEventListener('click', function() {
+            // Animate form disappearing with GSAP if available
+            if (typeof gsap !== 'undefined') {
+                gsap.to(formContainer, {
+                    opacity: 0, 
+                    y: 20, 
+                    duration: 0.3,
+                    onComplete: () => {
+                        formContainer.classList.add('hidden');
+                        contactTrigger.parentElement.style.display = 'block';
+                        
+                        // Reset form
+                        form.reset();
+                        formStatus.textContent = '';
+                        formStatus.className = 'form-status';
+                    }
+                });
+            } else {
+                formContainer.classList.add('hidden');
+                contactTrigger.parentElement.style.display = 'block';
+                
+                // Reset form
+                form.reset();
+                formStatus.textContent = '';
+                formStatus.className = 'form-status';
+            }
+        });
+    }
+    
+    // Handle form submission
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(form);
+        const data = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            subject: formData.get('subject'),
+            message: formData.get('message')
+        };
+        
+        // Show loading message
+        formStatus.textContent = 'Sending message...';
+        formStatus.className = 'form-status';
+        
+        // Send data to our API endpoint
+        fetch('/api/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Network response was not ok.');
+        })
+        .then(data => {
+            // Success message
+            formStatus.textContent = 'Message sent successfully! I will get back to you soon.';
+            formStatus.className = 'form-status success';
+            
+            // Reset form
+            form.reset();
+            
+            // Hide form after 3 seconds
+            setTimeout(() => {
+                if (typeof gsap !== 'undefined') {
+                    gsap.to(formContainer, {
+                        opacity: 0, 
+                        y: 20, 
+                        duration: 0.3,
+                        onComplete: () => {
+                            formContainer.classList.add('hidden');
+                            contactTrigger.parentElement.style.display = 'block';
+                            
+                            // Reset status
+                            setTimeout(() => {
+                                formStatus.textContent = '';
+                                formStatus.className = 'form-status';
+                            }, 500);
+                        }
+                    });
+                } else {
+                    formContainer.classList.add('hidden');
+                    contactTrigger.parentElement.style.display = 'block';
+                    
+                    // Reset status
+                    formStatus.textContent = '';
+                    formStatus.className = 'form-status';
+                }
+            }, 3000);
+        })
+        .catch(error => {
+            // Error message
+            console.error('Error:', error);
+            formStatus.textContent = 'There was a problem sending your message. Please try again.';
+            formStatus.className = 'form-status error';
         });
     });
 }
