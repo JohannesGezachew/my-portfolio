@@ -567,8 +567,10 @@ section {
 
 /* Contact Section */
 .contact {
-    padding: 3rem var(--page-margin);
-    margin-bottom: 5rem;
+    background-color: var(--color-text);
+    color: var(--color-background);
+    padding: 8rem 5vw;
+    margin-bottom: 0;
 }
 
 .contact-header h2 {
@@ -577,16 +579,25 @@ section {
 }
 
 .contact-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 2rem;
+    max-width: 1400px;
+    width: 100%;
+    gap: 4rem;
+}
+
+.contact-left {
+    flex: 1;
+    max-width: 600px;
 }
 
 .contact-cta a {
     display: inline-block;
     padding: 1rem 2rem;
-    background-color: var(--color-text);
-    color: var(--color-background);
+    background-color: var(--color-background);
+    color: var(--color-text);
     border-radius: 0.25rem;
     font-weight: 500;
     transition: transform 0.3s var(--transition-ease);
@@ -626,17 +637,17 @@ section {
 .form-group label {
     font-size: 1rem;
     font-weight: 500;
-    color: #888;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .form-group input,
 .form-group textarea {
     width: 100%;
     padding: 1rem;
-    background-color: rgba(30, 30, 30, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 0.5rem;
-    color: var(--color-text);
+    color: var(--color-background);
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
     transition: all 0.3s ease;
@@ -645,8 +656,8 @@ section {
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: var(--color-text);
-    background-color: rgba(240, 240, 240, 0.8);
+    border-color: var(--color-background);
+    background-color: rgba(255, 255, 255, 0.15);
 }
 
 .form-actions {
@@ -665,23 +676,23 @@ section {
 }
 
 .submit-btn {
-    background-color: var(--color-text);
-    color: var(--color-background);
+    background-color: var(--color-background);
+    color: var(--color-text);
 }
 
 .submit-btn:hover {
-    background-color: #333;
+    background-color: #fff;
     transform: translateY(-2px);
 }
 
 .cancel-btn {
     background-color: transparent;
-    color: var(--color-text);
-    border: 1px solid var(--color-text);
+    color: var(--color-background);
+    border: 1px solid var(--color-background);
 }
 
 .cancel-btn:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .form-status {
@@ -695,7 +706,7 @@ section {
 }
 
 .form-status.error {
-    color: #F44336;
+    color: #FF5252;
 }
 
 .contact-info {
@@ -703,12 +714,25 @@ section {
     flex-direction: column;
     gap: 1rem;
     font-size: 1rem;
+    opacity: 0.7;
+    min-width: 250px;
 }
 
 /* Responsive Design for Contact Form */
+@media (max-width: 992px) {
+    .contact-content {
+        flex-direction: column;
+        gap: 4rem;
+    }
+    
+    .contact-left {
+        max-width: 100%;
+    }
+}
+
 @media (max-width: 768px) {
     .contact-content {
-        grid-template-columns: 1fr;
+        gap: 2rem;
     }
     
     .contact-header h2 {

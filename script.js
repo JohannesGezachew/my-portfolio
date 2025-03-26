@@ -409,6 +409,7 @@ function initContactForm() {
     const formContainer = document.querySelector('.contact-form-container');
     const form = document.getElementById('contact-form');
     const formStatus = document.getElementById('form-status');
+    const contactCta = document.querySelector('.contact-cta');
     
     if (!contactTrigger || !form) return;
     
@@ -426,7 +427,7 @@ function initContactForm() {
         }
         
         // Hide the contact trigger button
-        contactTrigger.parentElement.style.display = 'none';
+        contactCta.style.display = 'none';
         
         // Focus the first input
         setTimeout(() => {
@@ -445,7 +446,7 @@ function initContactForm() {
                     duration: 0.3,
                     onComplete: () => {
                         formContainer.classList.add('hidden');
-                        contactTrigger.parentElement.style.display = 'block';
+                        contactCta.style.display = 'block';
                         
                         // Reset form
                         form.reset();
@@ -455,7 +456,7 @@ function initContactForm() {
                 });
             } else {
                 formContainer.classList.add('hidden');
-                contactTrigger.parentElement.style.display = 'block';
+                contactCta.style.display = 'block';
                 
                 // Reset form
                 form.reset();
@@ -512,7 +513,7 @@ function initContactForm() {
                         duration: 0.3,
                         onComplete: () => {
                             formContainer.classList.add('hidden');
-                            contactTrigger.parentElement.style.display = 'block';
+                            contactCta.style.display = 'block';
                             
                             // Reset status
                             setTimeout(() => {
@@ -523,7 +524,7 @@ function initContactForm() {
                     });
                 } else {
                     formContainer.classList.add('hidden');
-                    contactTrigger.parentElement.style.display = 'block';
+                    contactCta.style.display = 'block';
                     
                     // Reset status
                     formStatus.textContent = '';
