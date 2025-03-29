@@ -5,7 +5,6 @@ export default async function handler(req, res) {
     // 1. --- Security: Only allow POST requests ---
     if (req.method !== 'POST') {
         res.setHeader('Allow', ['POST']);
-        // Return error
         return res.status(405).json({ message: `Method ${req.method} Not Allowed` });
     }
 
