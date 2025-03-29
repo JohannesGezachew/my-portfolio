@@ -1,73 +1,46 @@
-# Yohannes Gezachew Portfolio
+# Yohannes Gezachew - Portfolio
 
-A modern, interactive portfolio website inspired by Dennis Snellenberg's award-winning design. This portfolio features a clean, minimalist aesthetic with smooth animations, 3D elements, and a responsive layout.
-
-## Features
-
-- Interactive 3D background using Three.js
-- Smooth animations and transitions with GSAP
-- Custom cursor and interactive elements
-- Responsive design that works on all devices
-- Multi-language loader animation
-- Local time display for Ethiopia (EAT timezone)
-- Projects showcase section
-- Detailed about section with skills, experience, and education
-- Contact section with CTA buttons
-- Social media links
+My personal portfolio website showcasing projects, skills, and experience. Built with HTML, CSS, JavaScript, Three.js, and GSAP.
 
 ## Technologies Used
 
-- HTML5
-- CSS3 (with custom properties and animations)
-- JavaScript (ES6+)
-- Three.js for 3D graphics
-- GSAP for animations
-- ScrollTrigger for scroll-based animations
+*   **Frontend:** HTML5, CSS3, JavaScript (ES6+)
+*   **Libraries:** Three.js (for 3D), GSAP (for animations)
+*   **Backend (Contact Form):** Node.js, Nodemailer (via Vercel Serverless Function)
+*   **Deployment:** Vercel
 
-## Getting Started
+## Getting Started Locally
 
-1. Clone or download this repository
-2. Open `index.html` in your browser to view the portfolio
-3. Modify the content in `index.html` to customize your portfolio information
-4. Update styles in `style.css` to match your personal brand
-5. Adjust animations and 3D effects in `script.js` as needed
+To run the complete site locally, including the contact form functionality:
 
-## Customization
+**Prerequisites:**
+*   Node.js and npm (or yarn) installed.
+*   Vercel CLI installed (`npm install -g vercel`).
 
-### Changing Colors
+**Steps:**
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/JohannesGezachew/your-repo-name.git
+    ```
+    *(Replace `your-repo-name`)*
+2.  Navigate into the directory:
+    ```bash
+    cd your-repo-name
+    ```
+3.  Install backend dependencies:
+    ```bash
+    npm install
+    ```
+4.  Run the Vercel development server:
+    ```bash
+    vercel dev
+    ```
+5.  Open your browser and navigate to `http://localhost:3000` (or the URL provided by the `vercel dev` command).
 
-The color scheme can be easily modified by editing the CSS variables in the `:root` selector in `style.css`:
-
-```css
-:root {
-    --color-background: #f5f5f5; /* Background color */
-    --color-text: #111111; /* Main text color */
-    --color-accent: #333333; /* Accent color */
-    --color-muted: #777777; /* Secondary text color */
-    --color-border: #dddddd; /* Border color */
-    /* ... other variables */
-}
-```
-
-### Updating Content
-
-Edit the HTML in `index.html` to update your personal information, projects, experience, and education details.
-
-### Modifying 3D Elements
-
-The 3D background can be customized in the `initThreeJS()` function in `script.js`. You can change the number of shapes, their colors, sizes, and animation properties.
-
-### Adjusting Animations
-
-Animation timings and effects can be modified in the `initScrollAnimations()` function in `script.js`.
-
-## Browser Compatibility
-
-This portfolio works best in modern browsers like Chrome, Firefox, Safari, and Edge.
+*(**Note:** For the contact form to actually *send emails* when running locally, you must configure your SMTP environment variables. Create a `.env.development.local` file in the root directory with your `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, and `SMTP_PASSWORD`.)*
 
 ## Credits
 
-- Design inspiration: Dennis Snellenberg (https://dennissnellenberg.com)
 - Three.js: https://threejs.org
 - GSAP: https://greensock.com/gsap
 - Font: Inter (Google Fonts)
@@ -78,4 +51,4 @@ Feel free to use and modify this portfolio for your personal use.
 
 ---
 
-© 2024 Yohannes Gezachew 
+© 2025 Yohannes Gezachew 
