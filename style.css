@@ -114,7 +114,7 @@ p {
     background-color: rgba(0, 0, 0, 0.15);
     transform: translate(-50%, -50%);
     mix-blend-mode: difference;
-    pointer-events: none;
+    pointer-events: none !important;
     z-index: 9999;
     opacity: 0;
     transition: transform 0.2s, opacity 0.3s;
@@ -222,9 +222,9 @@ p {
     transition: transform 0.3s var(--transition-ease);
 }
 
-.nav-link:hover a {
+/* .nav-link:hover a {
     transform: translateY(-100%);
-}
+} */
 
 .nav-link:hover::after {
     transform: scaleX(1);
