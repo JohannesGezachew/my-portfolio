@@ -7,12 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initLocalTime();
     
     // Only initialize Three.js if not on mobile
-    if (window.innerWidth > 768) {
-        initThreeJS();
-    } else {
-        // Add a simple background gradient for mobile
-        document.getElementById('webgl').style.background = 'linear-gradient(135deg, #111111 0%, #333333 100%)';
-    }
+  
+    initThreeJS();
+
     
     // Delay scroll animations to improve initial load performance
     setTimeout(() => {

@@ -222,9 +222,9 @@ p {
     transition: transform 0.3s var(--transition-ease);
 }
 
-/* .nav-link:hover a {
+.nav-link:hover a {
     transform: translateY(-100%);
-} */
+}
 
 .nav-link:hover::after {
     transform: scaleX(1);
@@ -261,6 +261,8 @@ p {
     padding: 5vw;
     display: grid;
     grid-template-rows: auto 1fr auto;
+    overflow-y: auto;
+    
 }
 
 .menu-header {
