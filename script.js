@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMenu();
     initLocalTime();
     
-    // Only initialize Three.js if not on mobile
+
   
     initThreeJS();
 
