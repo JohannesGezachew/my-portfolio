@@ -523,6 +523,20 @@ section {
     flex-direction: column;
 }
 
+.skills-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.skills-category h5 {
+    margin-bottom: 0.75rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-muted);
+}
+
 .skills-list {
     display: flex;
     flex-wrap: wrap;
